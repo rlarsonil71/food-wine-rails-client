@@ -2,42 +2,12 @@
 
   <!-- {{> partial}} -->
 
-  <!-- Developers, why are we using data-id and not just id? -->
-  <!-- <h1 data-id="{{book.id}}"> <small>Title: {{book.title}}</small></h1> -->
   <h2><small>Player: {{player.player_name}}</small></h2>
 
   <ul><data-id="{{player.id}}">
 
-  <!-- {{#if book.cover_img}}
-    <img src={{book.cover_img}}>
-  {{else}}
-    No cover image.
-  {{/if}} -->
-
-  <!-- <h4>
-    <li>
-      {{#if book.author}}
-        Author: {{book.author}}
-      {{else}}
-        No description.
-        {{/if}}
-    </li>
-  </h4>
-
-  <h4>
-    <li>
-      {{#if book.description}}
-        Description: {{book.description}}
-      {{else}}
-        No description.
-      {{/if}}
-    </li>
-  </h4> -->
   <li><button data-id="{{player.id}}" class="show-more-button jeter-test" id="{{player.id}}">Show More</button></li>
   <li><button data-id="{{player.id}}" class="remove-button" id="{{player.id}}">Remove</button></li>
-  <!-- <li><button data-id="{{player.id}}" class="remove-button" id="remove-{{player.id}}">Remove</button></li> -->
-
-  <!-- <li><button id={{id}} class="remove-player-button"> Remove {{player.given_name}} </button></li> -->
 
   </ul>
 

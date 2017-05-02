@@ -1,46 +1,10 @@
-<!-- {{#each favorite_player as |player|}} -->
-<!-- {{#with favorite_player}} -->
+<h2><small>Player: {{favorite_player.player_name}}</small></h2>
 
-  <!-- Developers, why are we using data-id and not just id? -->
-  <!-- <h1 data-id="{{book.id}}"> <small>Title: {{book.title}}</small></h1> -->
-  <h2><small>Player: {{favorite_player.player_name}}</small></h2>
+<ul><data-id="{{favorite_player.id}}">
 
-  <ul><data-id="{{favorite_player.id}}">
+  <h3><small>Team: {{favorite_player.team_name}}</small></h3>
+  <h3><small>Sport: {{favorite_player.sport}}</small></h3>
+  <h3><small>Position: {{favorite_player.position}}</small></h3>
+  <h3><small>Player Number: {{favorite_player.player_number}}</small></h3>
 
-    <h3><small>Team: {{favorite_player.team_name}}</small></h3>
-    <h3><small>Sport: {{favorite_player.sport}}</small></h3>
-    <h3><small>Position: {{favorite_player.position}}</small></h3>
-    <h3><small>Player Number: {{favorite_player.player_number}}</small></h3>
-
-    <!-- {{#if book.cover_img}}
-      <img src={{book.cover_img}}>
-    {{else}}
-      No cover image.
-    {{/if}}
-
-    <h4>
-      <li>
-        {{#if book.author}}
-          Author: {{book.author}}
-        {{else}}
-          No description.
-          {{/if}}
-      </li>
-    </h4>
-
-    <h4>
-      <li>
-        {{#if book.description}}
-          Description: {{book.description}}
-        {{else}}
-          No description.
-        {{/if}}
-      </li>
-    </h4> -->
-
-    <!-- <li><button data-id="{{player.id}}" class="show-more-button" id="{{player.id}}">Show More</button></li>
-    <li><button data-id="{{player.id}}" class="remove-button" id="{{player.id}}">Remove</button></li> -->
-
-  </ul>
-<!-- {{/with}} -->
-<!-- {{/each}} -->
+</ul>
