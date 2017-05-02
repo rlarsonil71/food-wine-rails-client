@@ -10,7 +10,7 @@ const config = require('./config')
 require('./example')
 
 const authEvents = require('./auth/events.js')
-const gameEvents = require('./player/events.js')
+const playerEvents = require('./player/events.js')
 
 // On document ready
 $(() => {
@@ -38,8 +38,8 @@ $(() => {
     $('#myCreatePlayerModal').modal('show')
   })
 
-  $('#select-index-game').on('click', function () {
-    $('#myIndexGameModal').modal('show')
+  $('#select-index-player').on('click', function () {
+    $('#myIndexPlayerModal').modal('show')
   })
 
   $('#select-show-game').on('click', function () {
@@ -58,8 +58,10 @@ $(() => {
   // Hide Create New Player modal button initially until user signs in.
   $('#select-create-player').hide()
 
+  // Hide Get Favorite Players modal button initially until user signs in.
+  $('#select-index-player').hide()
+
   // ** COMMENTED OUT *** DEBUG MODAL buttons
-  $('#select-index-game').hide()
   $('#select-show-game').hide()
   $('#select-update-game-state').hide()
   // END DEBUG
@@ -69,5 +71,5 @@ $(() => {
   document.getElementById('status-bar-2').innerHTML = 'Please SIGN UP or SIGN IN!'
 
   authEvents.addHandlers()
-  gameEvents.addHandlers()
+  playerEvents.addHandlers()
 })

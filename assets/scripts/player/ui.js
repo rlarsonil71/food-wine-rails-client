@@ -17,7 +17,7 @@ const createPlayerSuccess = (ajaxResponse) => {
   $('#create-player').trigger('reset')
 
   // Set GUI status bar after user creates a new player
-  document.getElementById('status-bar-2').innerHTML = ' '
+  // *** COMMENTED OUT *** document.getElementById('status-bar-2').innerHTML = ' '
 }
 
 const createPlayerFailure = (error) => {
@@ -67,19 +67,25 @@ const showUserStatsFailure = (error) => {
   $('#myShowUserStatsModal').modal('hide')
 }
 
-const indexGameSuccess = (ajaxResponse) => {
-  // console.log('game/ui.js (indexGameSuccess) ran!  Data is :', ajaxResponse)
+const indexPlayerSuccess = (ajaxResponse) => {
+  console.log('player/ui.js (indexPlayerSuccess) ran!  Data is :', ajaxResponse)
 
-  // Hide the INDEX GAME modal from displaying to the user
-  $('#myIndexGameModal').modal('hide')
+  // Hide the SHOW FAVORITE PLAYERS modal from displaying to the user
+  $('#myIndexPlayerModal').modal('hide')
+
+  // Clear modal body text in SHOW FAVORITE PLAYERS modal
+  $('#index-player').trigger('reset')
 }
 
-const indexGameFailure = (error) => {
-  // console.log('game/ui.js (indexGameFailure) - Error is :', error)
+const indexPlayerFailure = (error) => {
+  console.log('player/ui.js (indexPlayerFailure) - Error is :', error)
   console.error(error)
 
-  // Hide the INDEX GAME modal from displaying to the user
-  $('#myIndexGameModal').modal('hide')
+  // Hide the SHOW FAVORITE PLAYERS modal from displaying to the user
+  $('#myIndexPlayerModal').modal('hide')
+
+  // Clear modal body text in SHOW FAVORITE PLAYERS modal
+  $('#index-player').trigger('reset')
 }
 
 const showGameSuccess = (ajaxResponse) => {
@@ -117,8 +123,8 @@ module.exports = {
   createPlayerFailure,
   showUserStatsSuccess,
   showUserStatsFailure,
-  indexGameSuccess,
-  indexGameFailure,
+  indexPlayerSuccess,
+  indexPlayerFailure,
   showGameSuccess,
   showGameFailure,
   updateGameStateSuccess,

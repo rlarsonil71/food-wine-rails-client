@@ -9,7 +9,7 @@ const errorTextUponIncorrectPasswordFailure = 'Password is incorrect.  Please ty
 
 const welcomeText = 'Welcome!!!'
 const signUpOrSignInText = 'Please SIGN UP or SIGN IN!'
-const createNewPlayerText = 'Please create a new favorite sports player!'
+const createNewPlayerText = 'Please Create a New Favorite Sports Player or Show All Your Favorite Players!'
 const thankYouTextUponSignOutSuccess = 'Thank you for playing!!!'
 
 const signUpSuccess = (ajaxResponse) => {
@@ -42,6 +42,9 @@ const signUpFailure = (error) => {
   //  password mismatch will not get this far.
   $('#sign-up-footer').html(errorTextUponSignUpFailure)
 
+  // Clear modal body text in SIGN UP modal
+  $('#sign-up').trigger('reset')
+
   // If user closes out of SIGN UP modal, clear error text message in SIGN UP
   //  MODAL and reset modal body text.
   $('#close-sign-up-modal').on('click', function () {
@@ -49,12 +52,13 @@ const signUpFailure = (error) => {
     $('#sign-up').trigger('reset')
   })
 
-  // DELAY 2 seconds for user to read error text and then close SIGN UP modal
-  //  and show SIGN IN modal.
+  // DELAY 2 seconds for user to read error text and then close SIGN UP modal,
+  //  show SIGN IN modal, and clear error text message in SIGN UP modal.
   window.setTimeout(function () {
     // Hide the modal from displaying to the user
     $('#mySignUpModal').modal('hide')
     $('#mySignInModal').modal('show')
+    $('#sign-up-footer').html(' ')
   }, 2000)
 }
 
@@ -90,8 +94,11 @@ const signInSuccess = (ajaxResponse) => {
   // Upon successful user sign in, show CREATE NEW PLAYER modal button
   $('#select-create-player').show()
 
+  // Upon successful user sign in, show SHOW FAVORITE PLAYERS modal button
+  $('#select-index-player').show()
+
   // Upon successful user sign in, show SHOW USER STATS GAME modal button
-  $('#select-show-user-stats').show()
+  // *** COMMENTED OUT *** $('#select-show-user-stats').show()
 
   // Set GUI status bar after user signs in
   const userString = 'Welcome ' + store.user.email + '!!!'
@@ -108,6 +115,9 @@ const signInFailure = (error) => {
   // Display error text in SIGN IN modal footer back to user to correct
   //  incorrect password
   $('#sign-in-footer').html(errorTextUponIncorrectPasswordFailure)
+
+  // Clear modal body text in SIGN IN modal
+  $('#sign-in').trigger('reset')
 
   // If user closes out of SIGN IN modal, clear error text message in SIGN IN
   //  MODAL and reset modal body text.
@@ -137,6 +147,9 @@ const changePasswordFailure = (error) => {
   // Display error text in CHANGE PASSWORD modal footer back to user to correct
   //  incorrect original password
   $('#change-password-footer').html(errorTextUponIncorrectPasswordFailure)
+
+  // Clear modal body text in CHANGE PASSWORD modal
+  $('#change-password').trigger('reset')
 
   // If user closes out of CHANGE PASSWORD modal, clear error text message in
   //  CHANGE PASSWORD modal and reset modal body text.
@@ -181,6 +194,9 @@ const signOutSuccess = () => {
 
     // Upon successful user sign out, hide CREATE NEW PLAYER modal button
     $('#select-create-player').hide()
+
+    // Upon successful user sign out, hide SHOW FAVORITE PLAYERS modal button
+    $('#select-index-player').hide()
 
     // Upon successful user sign out, hide SHOW USER STATS GAME modal button
     $('#select-show-user-stats').hide()

@@ -7,7 +7,7 @@ const ui = require('./ui')
 
 // *** COMMENTED OUT *** const gameLogic = require('./gameLogic')
 
-// AJAX Game Event Handler Functions
+// AJAX Player Event Handler Functions
 const onCreatePlayer = function (event) {
   event.preventDefault()
   console.log('player/events.js (onCreatePlayer) ran!')
@@ -21,14 +21,14 @@ const onCreatePlayer = function (event) {
     .catch(ui.createPlayerFailure)
 }
 
-const onIndexGame = function (event) {
+const onIndexPlayer = function (event) {
   event.preventDefault()
-  // console.log('index-game ran!')
+  console.log('player/events.js (onIndexPlayer) ran!')
 
   // Don't need to use data object here!
-  api.indexGame()
-    .then(ui.indexGameSuccess)
-    .catch(ui.indexGameFailure)
+  api.indexPlayer()
+    .then(ui.indexPlayerSuccess)
+    .catch(ui.indexPlayerFailure)
 }
 
 const onShowGame = function (event) {
@@ -75,9 +75,11 @@ const addHandlers = () => {
   // Set up event handler to CREATE NEW PLAYER modal
   $('#create-player').on('submit', onCreatePlayer)
 
+  // Set up event handler to SHOW FAVORITE PLAYERS modal
+  $('#index-player').on('submit', onIndexPlayer)
+
   // Set up event handlers for temporary simulation modals to test GAME API
   //  AJAX calls
-  $('#index-game').on('submit', onIndexGame)
   $('#show-game').on('submit', onShowGame)
   $('#update-game-state').on('submit', onUpdateGameState)
 
