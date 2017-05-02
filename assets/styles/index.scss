@@ -1,2 +1,109 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+$background-color: #e6f7ff;
+// $font-color: #dfdfdf;
+$font-color: #000;
+$white: #fff;
+$black: #000;
+$light-gray: #f1f1f1;
+$dark-gray: #555;
+
+body {
+  background-color: $background-color;
+  color: $font-color;
+  margin: 2px auto;
+  // text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+#status-bar-1 {
+  font-size: 30px;
+  // padding-bottom: 30px;
+  padding-top: 30px;
+  text-align: center;
+}
+
+#status-bar-2 {
+  font-size: 25px;
+  padding-bottom: 30px;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.modal {
+  text-align: left;
+}
+
+.box {
+  border: 2px solid $black;
+  // height: 10px;
+}
+
+// Remove the navbar's default margin-bottom and rounded borders
+.navbar {
+  border-radius: 0;
+  // margin-bottom: 0;
+}
+
+.game-board {
+  background-color: $light-gray;
+  font-family: helvetica;
+  font-size: 125px;
+  height: fixed;
+  margin-bottom: 100px;
+  margin-left: 400px;
+  margin-right: 380px;
+  text-align: center;
+  width: fixed;
+}
+
+.game-cell {
+  border: 3px solid $black;
+  height: 150px;
+  width: 150px;
+}
+
+// Set height of the grid so .sidenav can be 100% (adjust as needed)
+.row.content {
+  height: 450px;
+}
+
+// Set gray background color and 100% height
+.sidenav {
+  background-color: $light-gray;
+  height: 100%;
+  padding-top: 20px;
+}
+
+// Set black background color, white text and some padding
+footer {
+  background-color: $dark-gray;
+  clear: left;
+  color: $white;
+  padding: 15px;
+}
+
+// On small screens, set height to 'auto' for sidenav and grid
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+
+  .row.content {
+    height: auto;
+  }
+}
+
+.clearfix:after {
+  clear: both;
+  content: ' ';
+  display: block;
+  font-size: 0;
+  height: 0;
+  visibility: hidden;
+}
