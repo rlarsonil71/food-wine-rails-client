@@ -42,6 +42,11 @@ $(() => {
     $('#myIndexPlayerModal').modal('show')
   })
 
+  $(document).on('click', '.remove-button', function () {
+    console.log('scripts/index.js (ODR) ran!  ID is :', this.id)
+    playerEvents.onRemovePlayer(this.id)
+  })
+
   $('#select-show-game').on('click', function () {
     $('#myShowGameModal').modal('show')
   })

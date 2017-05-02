@@ -1,6 +1,8 @@
 'use strict'
 
 const store = require('../store')
+const api = require('./api')
+const showMyFavoritePlayersTemplate = require('../templates/favorite_player-listing.handlebars')
 
 // *** COMMENTED OUT *** const gameLogic = require('./gameLogic')
 
@@ -15,6 +17,15 @@ const createPlayerSuccess = (ajaxResponse) => {
 
   // Clear modal body text in CREATE NEW PLAYER modal
   $('#create-player').trigger('reset')
+
+  // Do a GET INDEX (call to api.indexPlayer method for current list of
+  //  favorite_players object (after recent create player) and build handlebars
+  //  HTML showing my favorite players for current user.
+
+  // Don't need to use data object here!
+  api.indexPlayer()
+    .then(indexPlayerSuccess)
+    .catch(indexPlayerFailure)
 
   // Set GUI status bar after user creates a new player
   // *** COMMENTED OUT *** document.getElementById('status-bar-2').innerHTML = ' '
@@ -75,6 +86,13 @@ const indexPlayerSuccess = (ajaxResponse) => {
 
   // Clear modal body text in SHOW FAVORITE PLAYERS modal
   $('#index-player').trigger('reset')
+
+  // Clear favorite players content
+  $('.content').empty()
+
+  // Build handlebars HTML showing my favorite players for current user
+  const showMyFavoritePlayersHtml = showMyFavoritePlayersTemplate({ favorite_players: ajaxResponse.favorite_players })
+  $('.content').append(showMyFavoritePlayersHtml)
 }
 
 const indexPlayerFailure = (error) => {
@@ -86,6 +104,27 @@ const indexPlayerFailure = (error) => {
 
   // Clear modal body text in SHOW FAVORITE PLAYERS modal
   $('#index-player').trigger('reset')
+}
+
+const removePlayerSuccess = () => {
+  console.log('player/ui.js (removePlayerSuccess) ran!')
+
+  // Clear favorite players content
+  $('.content').empty()
+
+  // Do a GET INDEX (call to api.indexPlayer method for current list of
+  //  favorite_players object (after recent remove player) and build handlebars
+  //  HTML showing my favorite players for current user.
+
+  // Don't need to use data object here!
+  api.indexPlayer()
+    .then(indexPlayerSuccess)
+    .catch(indexPlayerFailure)
+}
+
+const removePlayerFailure = (error) => {
+  console.log('player/ui.js (removePlayerFailure) - Error is :', error)
+  console.error(error)
 }
 
 const showGameSuccess = (ajaxResponse) => {
@@ -125,6 +164,8 @@ module.exports = {
   showUserStatsFailure,
   indexPlayerSuccess,
   indexPlayerFailure,
+  removePlayerSuccess,
+  removePlayerFailure,
   showGameSuccess,
   showGameFailure,
   updateGameStateSuccess,

@@ -172,7 +172,7 @@ const signOutSuccess = () => {
   $('#sign-out-footer').html(thankYouTextUponSignOutSuccess)
 
   // DELAY 3 seconds for user to read thank you text and then close SIGN OUT modal
-  //  and update other modal buttons and game board
+  //  and update other modal buttons and favorite players content
   window.setTimeout(function () {
     // Hide the SIGN OUT modal from displaying to the user
     $('#mySignOutModal').modal('hide')
@@ -200,6 +200,9 @@ const signOutSuccess = () => {
 
     // Upon successful user sign out, hide SHOW USER STATS GAME modal button
     $('#select-show-user-stats').hide()
+
+    // Upon successful user sign out, clear favorite players content
+    $('.content').empty()
 
     // Set GUI status bar on game initialization
     document.getElementById('status-bar-1').innerHTML = welcomeText

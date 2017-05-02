@@ -31,6 +31,15 @@ const onIndexPlayer = function (event) {
     .catch(ui.indexPlayerFailure)
 }
 
+const onRemovePlayer = function (data) {
+  event.preventDefault()
+  console.log('player/events.js (onRemovePlayer) - (data is ', data)
+
+  api.removePlayer(data)
+    .then(ui.removePlayerSuccess)
+    .catch(ui.removePlayerFailure)
+}
+
 const onShowGame = function (event) {
   event.preventDefault()
   // console.log('show-game ran!')
@@ -91,5 +100,6 @@ const addHandlers = () => {
 }
 
 module.exports = {
-  addHandlers
+  addHandlers,
+  onRemovePlayer
 }
