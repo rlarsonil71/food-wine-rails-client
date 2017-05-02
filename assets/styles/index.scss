@@ -9,6 +9,11 @@ $black: #000;
 $light-gray: #f1f1f1;
 $dark-gray: #555;
 
+html, body {
+  height: 100%;
+  overflow: auto;
+}
+
 body {
   background-color: $background-color;
   color: $font-color;
@@ -21,6 +26,10 @@ h1 {
 }
 
 h2 {
+  text-align: left;
+}
+
+h3 {
   text-align: left;
 }
 
@@ -52,6 +61,16 @@ h2 {
   border-radius: 0;
   // margin-bottom: 0;
 }
+
+// .content {
+//   color: #fff;
+// }
+//
+// .content h1 {
+//   margin: 0 auto;
+//   margin-top: 50px;
+//   text-align: center;
+// }
 
 .game-board {
   background-color: $light-gray;

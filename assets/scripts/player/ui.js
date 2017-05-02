@@ -3,14 +3,12 @@
 const store = require('../store')
 const api = require('./api')
 const showMyFavoritePlayersTemplate = require('../templates/favorite_player-listing.handlebars')
+const showMoreFavoritePlayerTemplate = require('../templates/favorite_player-more-data-listing.handlebars')
 
 // *** COMMENTED OUT *** const gameLogic = require('./gameLogic')
 
 const createPlayerSuccess = (ajaxResponse) => {
-  console.log('player/ui.js (createPlayerSuccess) ran!  Data is :', ajaxResponse)
-
-  // Store player object
-  store.player = ajaxResponse.player
+  console.log('player/ui.js (createPlayerSuccess) ran!  Response is :', ajaxResponse)
 
   // Hide the CREATE NEW PLAYER modal from displaying to the user
   $('#myCreatePlayerModal').modal('hide')
@@ -32,7 +30,7 @@ const createPlayerSuccess = (ajaxResponse) => {
 }
 
 const createPlayerFailure = (error) => {
-  console.log('player/ui.js (createPlayerFailure) - Error is :', error)
+  // console.log('player/ui.js (createPlayerFailure) - Error is :', error)
   console.error(error)
 
   // Hide the CREATE NEW PLAYER modal from displaying to the user
@@ -43,7 +41,7 @@ const createPlayerFailure = (error) => {
 }
 
 const showUserStatsSuccess = (ajaxResponse) => {
-  // console.log('game/ui.js (showUserStatsSuccess) ran!  Data is :', ajaxResponse)
+  // console.log('game/ui.js (showUserStatsSuccess) ran!  Response is :', ajaxResponse)
 
   // Hide the SHOW USER STATS GAME modal from displaying to the user
   $('#myShowUserStatsModal').modal('hide')
@@ -79,7 +77,7 @@ const showUserStatsFailure = (error) => {
 }
 
 const indexPlayerSuccess = (ajaxResponse) => {
-  console.log('player/ui.js (indexPlayerSuccess) ran!  Data is :', ajaxResponse)
+  console.log('player/ui.js (indexPlayerSuccess) ran!  Response is :', ajaxResponse)
 
   // Hide the SHOW FAVORITE PLAYERS modal from displaying to the user
   $('#myIndexPlayerModal').modal('hide')
@@ -96,7 +94,7 @@ const indexPlayerSuccess = (ajaxResponse) => {
 }
 
 const indexPlayerFailure = (error) => {
-  console.log('player/ui.js (indexPlayerFailure) - Error is :', error)
+  // console.log('player/ui.js (indexPlayerFailure) - Error is :', error)
   console.error(error)
 
   // Hide the SHOW FAVORITE PLAYERS modal from displaying to the user
@@ -106,8 +104,31 @@ const indexPlayerFailure = (error) => {
   $('#index-player').trigger('reset')
 }
 
+const showMorePlayerSuccess = (ajaxResponse) => {
+  console.log('player/ui.js (showMorePlayerSuccess) ran!  Response is :', ajaxResponse)
+  console.log('player/ui.js (showMorePlayerSuccess) ran!  Favorite Player is :', ajaxResponse.favorite_player)
+  console.log('player/ui.js (showMorePlayerSuccess) ran!  Player Name is :', ajaxResponse.favorite_player.player_name)
+  console.log('player/ui.js (showMorePlayerSuccess) ran!  Team Name is :', ajaxResponse.favorite_player.team_name)
+  console.log('player/ui.js (showMorePlayerSuccess) ran!  Sport is :', ajaxResponse.favorite_player.sport)
+  console.log('player/ui.js (showMorePlayerSuccess) ran!  Position is :', ajaxResponse.favorite_player.position)
+  console.log('player/ui.js (showMorePlayerSuccess) ran!  Player Number is :', ajaxResponse.favorite_player.player_number)
+
+  // Clear favorite players content
+  $('.content').empty()
+
+  // Build handlebars HTML showing more data about selected favorite player
+  //  for current user
+  const showMoreMyFavoritePlayerHtml = showMoreFavoritePlayerTemplate({ favorite_player: ajaxResponse.favorite_player })
+  $('.content').append(showMoreMyFavoritePlayerHtml)
+}
+
+const showMorePlayerFailure = (error) => {
+  // console.log('player/ui.js (showMorePlayerFailure) - Error is :', error)
+  console.error(error)
+}
+
 const removePlayerSuccess = () => {
-  console.log('player/ui.js (removePlayerSuccess) ran!')
+  // console.log('player/ui.js (removePlayerSuccess) ran!')
 
   // Clear favorite players content
   $('.content').empty()
@@ -123,12 +144,12 @@ const removePlayerSuccess = () => {
 }
 
 const removePlayerFailure = (error) => {
-  console.log('player/ui.js (removePlayerFailure) - Error is :', error)
+  // console.log('player/ui.js (removePlayerFailure) - Error is :', error)
   console.error(error)
 }
 
 const showGameSuccess = (ajaxResponse) => {
-  // console.log('sgame/ui.js (showGameSuccess) ran!  Data is :', ajaxResponse)
+  // console.log('sgame/ui.js (showGameSuccess) ran!  Response is :', ajaxResponse)
 
   // Hide the SHOW GAME modal from displaying to the user
   $('#myShowGameModal').modal('hide')
@@ -164,6 +185,8 @@ module.exports = {
   showUserStatsFailure,
   indexPlayerSuccess,
   indexPlayerFailure,
+  showMorePlayerSuccess,
+  showMorePlayerFailure,
   removePlayerSuccess,
   removePlayerFailure,
   showGameSuccess,

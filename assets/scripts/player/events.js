@@ -31,6 +31,15 @@ const onIndexPlayer = function (event) {
     .catch(ui.indexPlayerFailure)
 }
 
+const onShowMorePlayer = function (data) {
+  event.preventDefault()
+  console.log('player/events.js (onShowMorePlayer) - (data is ', data)
+
+  api.showMorePlayer(data)
+    .then(ui.showMorePlayerSuccess)
+    .catch(ui.showMorePlayerFailure)
+}
+
 const onRemovePlayer = function (data) {
   event.preventDefault()
   console.log('player/events.js (onRemovePlayer) - (data is ', data)
@@ -87,6 +96,8 @@ const addHandlers = () => {
   // Set up event handler to SHOW FAVORITE PLAYERS modal
   $('#index-player').on('submit', onIndexPlayer)
 
+  $('.content').on('click', '.jetertest', onShowMorePlayer)
+
   // Set up event handlers for temporary simulation modals to test GAME API
   //  AJAX calls
   $('#show-game').on('submit', onShowGame)
@@ -101,5 +112,6 @@ const addHandlers = () => {
 
 module.exports = {
   addHandlers,
-  onRemovePlayer
+  onRemovePlayer,
+  onShowMorePlayer
 }
