@@ -43,31 +43,18 @@ $(() => {
   })
 
   $(document).on('click', '.show-more-button', function () {
-    console.log('scripts/index.js (ODR - show-more-button) ran!  ID is :', this.id)
+    // console.log('scripts/index.js (ODR - show-more-button) ran!  ID is :', this.id)
     playerEvents.onShowMorePlayer(this.id)
   })
 
   $(document).on('click', '.update-button', function () {
-    console.log('scripts/index.js (ODR - update-button) ran!  ID is :', this.id)
+    // console.log('scripts/index.js (ODR - update-button) ran!  ID is :', this.id)
     playerEvents.onUpdatePlayer(this.id)
   })
 
-  // $(document).on('submit', '.save-update-button', function () {
-  //   console.log('scripts/index.js (ODR - save-update-button) ran!  ID is :', this.id)
-  //   playerEvents.onSaveUpdatedPlayer(this.id, event)
-  // })
-
   $(document).on('click', '.remove-button', function () {
-    console.log('scripts/index.js (ODR - remove-button) ran!  ID is :', this.id)
+    // console.log('scripts/index.js (ODR - remove-button) ran!  ID is :', this.id)
     playerEvents.onRemovePlayer(this.id)
-  })
-
-  $('#select-show-game').on('click', function () {
-    $('#myShowGameModal').modal('show')
-  })
-
-  $('#select-update-game-state').on('click', function () {
-    $('#myUpdateGameStateModal').modal('show')
   })
 
   // Hide Change Password and Sign Out modal buttons initially until user
@@ -81,12 +68,7 @@ $(() => {
   // Hide Get Favorite Players modal button initially until user signs in.
   $('#select-index-player').hide()
 
-  // ** COMMENTED OUT *** DEBUG MODAL buttons
-  $('#select-show-game').hide()
-  $('#select-update-game-state').hide()
-  // END DEBUG
-
-  // Set GUI status bar on game initialization
+  // Set GUI status bar on app initialization
   document.getElementById('status-bar-1').innerHTML = 'Welcome!!!'
   document.getElementById('status-bar-2').innerHTML = 'Please SIGN UP or SIGN IN!'
 

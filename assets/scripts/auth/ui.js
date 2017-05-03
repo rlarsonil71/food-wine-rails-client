@@ -2,8 +2,6 @@
 
 const store = require('../store')
 
-// ** COMMENTED OUT *** const gameLogic = require('../game/gameLogic')
-
 const errorTextUponSignUpFailure = 'User has already signed up.  Please sign in.'
 const errorTextUponIncorrectPasswordFailure = 'Password is incorrect.  Please type in correct password.'
 
@@ -13,7 +11,7 @@ const createNewPlayerText = 'Please Create a New Favorite Sports Player or Show 
 const thankYouTextUponSignOutSuccess = 'Thank you for playing!!!'
 
 const signUpSuccess = (ajaxResponse) => {
-  // console.log('signUpSuccess ran!  Data is :', ajaxResponse)
+  // console.log('(auth/ui.js) signUpSuccess ran!  Data is :', ajaxResponse)
 
   // Clear error text message in SIGN UP modal.
   $('#sign-up-footer').html(' ')
@@ -32,7 +30,7 @@ const signUpSuccess = (ajaxResponse) => {
 }
 
 const signUpFailure = (error) => {
-  // console.log('Sign-up failure! Error is :', error)
+  // console.log('(auth/ui.js) Sign-up failure! Error is :', error)
   console.error(error)
 
   // Display error text in SIGN UP modal footer back to user that the user
@@ -63,7 +61,7 @@ const signUpFailure = (error) => {
 }
 
 const signInSuccess = (ajaxResponse) => {
-  // console.log('signInSuccess ran!  Data is :', ajaxResponse)
+  // console.log('(auth/ui.js) signInSuccess ran!  Data is :', ajaxResponse)
 
   // Clear error text message in SIGN IN modal
   $('#sign-in-footer').html(' ')
@@ -74,7 +72,7 @@ const signInSuccess = (ajaxResponse) => {
   // Store user object
   store.user = ajaxResponse.user
 
-  console.log('ui.js: signInSuccess - store is: ', store)
+  // console.log('ui.js: signInSuccess - store is: ', store)
 
   // Hide the SIGN IN modal from displaying to the user
   $('#mySignInModal').modal('hide')
@@ -97,19 +95,14 @@ const signInSuccess = (ajaxResponse) => {
   // Upon successful user sign in, show SHOW FAVORITE PLAYERS modal button
   $('#select-index-player').show()
 
-  // Upon successful user sign in, show SHOW USER STATS GAME modal button
-  // *** COMMENTED OUT *** $('#select-show-user-stats').show()
-
   // Set GUI status bar after user signs in
   const userString = 'Welcome ' + store.user.email + '!!!'
   document.getElementById('status-bar-1').innerHTML = userString
   document.getElementById('status-bar-2').innerHTML = createNewPlayerText
-
-  // ** COMMENTED OUT *** gameLogic.initGameBoard()
 }
 
 const signInFailure = (error) => {
-  // console.log('Sign-in failure!  Error is :', error)
+  // console.log('(auth/ui.js) Sign-in failure!  Error is :', error)
   console.error(error)
 
   // Display error text in SIGN IN modal footer back to user to correct
@@ -128,7 +121,7 @@ const signInFailure = (error) => {
 }
 
 const changePasswordSuccess = (ajaxResponse) => {
-  // console.log('Password successfully changed')
+  // console.log('(auth/ui.js) Password successfully changed')
 
   // Clear error text message in CHANGE PASSWORD modal
   $('#change-password-footer').html(' ')
@@ -141,7 +134,7 @@ const changePasswordSuccess = (ajaxResponse) => {
 }
 
 const changePasswordFailure = (error) => {
-  // console.log('Change-Password failure!  Error is :', error)
+  // console.log('(auth/ui.js) Change-Password failure!  Error is :', error)
   console.error(error)
 
   // Display error text in CHANGE PASSWORD modal footer back to user to correct
@@ -160,7 +153,7 @@ const changePasswordFailure = (error) => {
 }
 
 const signOutSuccess = () => {
-  // console.log('signOutSuccess ran!  Nothing was returned')
+  // console.log('(auth/ui.js) signOutSuccess ran!  Nothing was returned')
 
   // OREO COOKIE!
   // console.log('store is: ', store)
@@ -198,22 +191,18 @@ const signOutSuccess = () => {
     // Upon successful user sign out, hide SHOW FAVORITE PLAYERS modal button
     $('#select-index-player').hide()
 
-    // Upon successful user sign out, hide SHOW USER STATS GAME modal button
-    $('#select-show-user-stats').hide()
-
     // Upon successful user sign out, clear favorite players content
     $('.content').empty()
 
-    // Set GUI status bar on game initialization
+    // Set GUI status bar on app initialization
     document.getElementById('status-bar-1').innerHTML = welcomeText
     document.getElementById('status-bar-2').innerHTML = signUpOrSignInText
-
-    // ** COMMENTED OUT *** gameLogic.initGameBoard()
   }, 3000)
 }
 
 const signOutFailure = (error) => {
-  console.log('Sign-out failure!  Error is :', error)
+  // console.log('(auth/ui.js) Sign-out failure!  Error is :', error)
+  console.log(error)
 
   // Hide the SIGN OUT modal from displaying to the user
   $('#mySignOutModal').modal('hide')
