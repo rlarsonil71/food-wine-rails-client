@@ -1,43 +1,71 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# Tic-Tac-Toe Game Project Client
+# My Favorite Player (Full Stack API Project Client)
 
 ## DESCRIPTION
 
-A simple tic-tac-toe game using one player.  Play alternates between player 'X'
-who goes first followed by player 'O' until a winner is determined or the board
-is full (i.e, tie or 'CAT' game).  This implementation supports playing multiple
-games one at a time and is deployed online at the URL found below.
+An application that allows a current user to log their favorite sports players.
+It uses a custom Rails API to create, read, update and delete their favorite
+sports players.  This implementation supports multiple users one at a time but
+only the favorite sports players for the logged in current user are displayed
+and are able to be updated and/or deleted.  This application is deployed online
+at the URL found below.
 
 ## FEATURES
 
-1. Single page application (SPA) using a custom game engine logic implementation.
+1. Single page application (SPA) using a custom back end API RAILS
+    implementation written in JavaScript.
 
 2. Full user sign up, sign in, change password and sign out authentication
-     with back end RAILS server using Tic-Tac-Toe data store api
-     (game-project-api) found in the following GIT HUB repository:
-        https://github.com/ga-wdi-boston/game-project-api
+     with custom back end RAILS server.
 
 3.  Complete user authentication error handling for user sign up, sign in,
-     change password and sign out.
+     change password and sign out to promote user experience.
 
-4.  Full support of game AJAX events with back end RAILS server using
-     Tic-Tac-Toe data store api (game-project-api) found in the following
-     GIT HUB repository:
-        https://github.com/ga-wdi-boston/game-project-api
+4.  Full support of favorite_players API AJAX events with custom back end RAILS
+     server that can create, read, update and delete favorite_players data in
+     a SQL database using custom GET, POST, PUT/PATCH, and DELETE RESTful
+     requests.  All actions which change data are authenticated and the changed
+     data is "owned" by the current user performing the change.
 
-5.  Use of jQuery for DOM manipulation and event handling.
+5.  Use of a Rails ORM to create a favorite_players database table structure and
+     interact with the data.
 
-6.  Bootstrap Modal Navbar
+6.  Use of jQuery and Handlebars templates for DOM manipulation and event
+     handling.
+
+7.  Bootstrap Modal Navbar
 
 
-## DEPLOYED URL
+## Front-End Client Application URL
 
-https://rlarsonil71.github.io/tic-tac-toe-client/
+https://rlarsonil71.github.io/food-wine-rails-client/
+
+
+## GitHub Application Repositories
+
+-   [`Front-End Client`](https://github.com/rlarsonil71/food-wine-rails-client)
+-   [`Back-End API`](https://github.com/rlarsonil71/food-wine-rails-api)
+
+
+## Heroku API URL
+
+-   [`Heroku API URL`](https://hidden-cliffs-39330.herokuapp.com/)
+
+
+## Project Requirements
+
+-   [`full-stack-project`](https://github.com/ga-wdi-boston/full-stack-project)
+
+
+## Project Dependencies
+
+-   [`browser-template`](https://github.com/ga-wdi-boston/browser-template)
+-   [`rails-api-one-to-many`](https://github.com/ga-wdi-boston/rails-api-one-to-many)
+
 
 ## Installation
 
-Install game-project-api with `npm install`.
 Start with `grunt serve`.
 
 ## List of Technologies Used
@@ -45,7 +73,10 @@ Start with `grunt serve`.
 1.  HTML, CSS, JavaScript
 2.  jQuery, SASS
 3.  Bootstrap modals
-4.  AJAX
+4.  Handlebars templates
+5.  RAILS MFC
+6.  AJAX
+7.  SQL
 
 ## List of Servers Used
 
@@ -55,60 +86,54 @@ Front-end:
 Back-end RAILS server:
   [game-project-api]  (http://localhost:4741/)
 
+
 ## Planning and Software Design - Development Process
 
 1.  Review project scope and requirements.
 2.  Design wireframes and user stories.
 3.  Breakdown project scope and requirements into small functional components.
-4.  Review authorization actions in Tic Tac Toe game API.
-5.  Review game actions in Tic Tac Toe game API.
-6.  Design project schedule and order small functional components tieboxing each
+4.  Review authorization actions needed in custom back-end API.
+5.  Review database model needed in custom back-end API to support
+     favorite_players data and manipulation of data.
+6.  Create an ERD using a one-to-many database relationship.
+7.  Check with consultant to get feedback on ERD design as well as other aspects
+     of project requirements.
+8.  Design project schedule and order small functional components tieboxing each
      when appropriate.
-7.  Design file structure for project (auth vs. gameAPI vs. gameLogic) using
+9.  Construct data models and migrations to represent data.
+10. Test data models using RAILS console.
+11. Test API endpoint using CURL CRUD test scripts.
+12.  Design file structure for project (auth vs. favorite_players) using
      proper git source code control.  Follow js-template (browser-template) repo
      practicing separation of concerns (i.e. separating DOM manipulation files
      from network API files).
-8.  Design user state machine for modal button display showing and hiding modal
+13. Design user state machine for modal button display showing and hiding modal
      buttons upon each user action (i.e., sign-up, sign-in, change-password,
      sign-out, create-game).
-9.  Authorization actions
+14.  Authorization actions
     a.  Construct CURL test scripts for each authorization action.
     b.  Test each CURL test script for each authorization application.
     c.  Once each CURL test script is successfully tested, code index.js, auth
          events.js, api.js, and ui.js files using AJAX authorization actions.
     d.  Create test simulations modal buttons to test each AJAX authorization
          action.
-10. Test and verify that each authorization action works per the given game API
+15. Test and verify that each authorization action works per the given game API
      documentation.
-11.  Game actions
-    a.  Construct CURL test scripts for each game action.
-    b.  Test each CURL test script for each game application.
+16. Favorite Player CRUD actions with user authentication.
+    a.  Construct CURL test scripts for each favorite_players CRUD action.
+    b.  Test each CURL test script for each favorite_players CRUD action.
     c.  Once each CURL test script is successfully tested, code index.js, auth
-         events.js, api.js, and ui.js files using AJAX game actions.
-    d.  Create test simulations modal buttons to test each AJAX game action.
-12. Test and verify that each game action works per the given game API
-     documentation.
-13. Design visual game board using wireframe.
-14. Code preliminary HTML and CSS for basic page including game board.
-15. Add click handlers to each cell of game board.
-16. Test clicking in each of the 9 cells of the game board.
-17. Design game logic
-    a.  Design logic for processing box clicks and showing `X` or `O`s in game
-         board cells.
-    b.  Design logic for checking for win situation.
-    c.  Design logic for checking for tie situation.
-    d.  Design logic for starting new game initializing variables and views where
-         necessary.
-18. Code game logic
-    a.  Code logic for processing box clicks and showing `X` or `O`s in game
-         board cells.
-    b.  Code logic for checking for win situation.
-    c.  Code logic for checking for tie situation.
-    d.  Code logic for starting new game initializing variables and views where
-        necessary.
-19. Design unit test cases for game logic.
-20. Execute unit test cases for game logic (playing games and verifying
-     functionality).
+         events.js, api.js, and ui.js files using AJAX favorite_players actions.
+17. Test and verify that each favorite_players action works per the custom
+     back-end API documentation.
+18. Design visual user experience using wireframe(s).
+19. Code preliminary HTML and CSS for basic SPA front-end page including navbar
+     and allocated div that contains favorite_players information.
+19. Design unit test cases for favorite_players CRUD using front-end
+     functionnality.
+20. Execute unit test cases for favorite_players CRUD (signing up users and
+     verifying CRUD functionality and data only displays for current logged in
+     user and that no other user data is modified or deleted.
 
 
 ## Planning - Problem Solving Strategy
@@ -117,7 +142,7 @@ Back-end RAILS server:
 2.  Add console.log messages to code.
 3.  Add debugger and step through code examining variables and logic.
 4.  Review WDI class notes and previous trainings, labs, and/or studies.
-5.  Google issue (i.e. javascript array foreach)
+5.  Google issue (i.e. handlebars)
 6.  Open issue in GitHub tic-tac-toe repository.
 
 
@@ -137,53 +162,76 @@ Back-end RAILS server:
 
 http://imgur.com/gallery/Bmql6
 
+## Links to ERD Used
+
+https://imgur.com/gallery/ydVIS (Food/Wine - One to Many - Preliminary)
+https://imgur.com/gallery/o4IRg (User/Favorite_Players - One to Many - Production)
 
 ## Links to Wireframes Used
 
-1.  http://imgur.com/8nwKLCm
-2.  http://imgur.com/gallery/AaYes
+https://imgur.com/gallery/6qUV3 (Food/Wine - Preliminary)
+https://imgur.com/gallery/uRr7w (Favorite_Players - Production)
+
 
 ## User Stories Used
 
-1.  As a player, I want to sign up, so that I can play a game.
-2.  As a player, I want to sign in, so that I can login and play a game.
+1.  As a player, I want to sign up, so that I can use the application.
+2.  As a player, I want to sign in, so that I can login, use the application,
+     and log a favorite player.
 3.  As a player, I want to change a password, so that I can protect my login
      credentials.
-4. As a player, I want to sign out, so that I can sign out.
-5. As a player, I want to start a new game, so that I can play a game.
-6. As a player, I want to play multiple games one at a time, so that I can have
-    fun.
-7. As a player, I want to sign in again so that I can play a game if I typed in
-    an incorrect password.
-8. As a player, I want to sign up again so that I can play a game if I typed in
-    2 different passwords at sign up.
+4.  As a player, I want to sign out, so that I can sign out.
+5.  As a player, I want to create a new favorite player, so that it is displayed
+     on the front-end page.
+6.  As a player, I want to create multiple favorite players one at a time, so
+     that I can keep this list for later use.
+7.  As a player, I want to sign in again, so that I can view by list of
+     favorite players at a later date.
+8.  As a player, I want to delete a favorite player, so that it is not displayed
+     to me.
+9.  As a player, I want to update data about my favorite player, so that the
+     correct player data is displayed to me and is able to displayed to me
+     at a later date.
 
 
 ## List of Challenges
 
-1.  Closed Issue 518 - https://github.com/ga-wdi-boston/game-project/issues/518
-     Auth AJAX events working on index.html but not firing AJAX events within
-      modal
+1.  List of Closed Issues -
+     https://github.com/ga-wdi-boston/full-stack-project/issues?q=is%3Aissue+author%3Arlarsonil71
+
+    Need assistance with rails generate
+    https://github.com/ga-wdi-boston/full-stack-project/issues/762
+
+    Need assistance with recreating table
+    https://github.com/ga-wdi-boston/full-stack-project/issues/766
+
+    Handlebars - List template works but single object template does not work
+    https://github.com/ga-wdi-boston/full-stack-project/issues/800
+
+    Update form from handlebars not working properly
+    https://github.com/ga-wdi-boston/full-stack-project/issues/811
 
     Lessons learned:
-     - If you copy Bootstrap templates from http://getbootstrap.com, make sure
-        you know exactly what it is does as there are many predefined class names
-        which do specific things to your styling.
-     - Do not nest HTML forms
+     - Do not use SQL to update data or drop a table.  Use data migration files
+        instead.
+     - Extra comments in handlebars templates can yield unexpected results.
+     - If you have a working template, use it to compare it with a not-working
+        version (event handlers and target id/class selectors - create-player
+        vs. updatePlayerForm)
 
-2.  Game Logic
+2.  Interacting with forms within handlebars
+
 3.  CSS and SCSS styling
 
 
 ## List of Unsolved Problems to be Handled in Future Releases
 
-1.  CSS fix for game board
-2.  Enhanced Game metrics
+None.
 
 
 ## List of Upcoming Features
 
-1.  Multi-Player functionality
+1.  Enhanced player attribute data including links to 3rd party API player info
 2.  Full Responsive GUI (The only responsive feature is the Bootstrap Modal)
 3.  Refactor code
 4.  Enhanced styling
