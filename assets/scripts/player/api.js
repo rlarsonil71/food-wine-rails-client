@@ -57,6 +57,21 @@ const showMorePlayer = (data) => {
   })
 }
 
+const updatePlayer = (id, data) => {
+  console.log('player/api.js (updatePlayer) - ID is: ', id)
+  console.log('player/api.js (updatePlayer) - Data is: ', data)
+
+  // store.user is stored in ui.js -> signInSuccess
+  return $.ajax({
+    url: config.apiOrigin + '/favorite_players/' + id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
 const removePlayer = (data) => {
   console.log('player/api.js (removePlayer) - (data is ', data)
 
@@ -104,6 +119,7 @@ module.exports = {
   showUserStats,
   indexPlayer,
   showMorePlayer,
+  updatePlayer,
   removePlayer,
   showGame,
   updateGameState

@@ -3,7 +3,8 @@
 const store = require('../store')
 const api = require('./api')
 const showMyFavoritePlayersTemplate = require('../templates/favorite_player-listing.handlebars')
-const showMoreFavoritePlayerTemplate = require('../templates/favorite_player-more-data-listing.handlebars')
+const showMoreMyFavoritePlayerTemplate = require('../templates/favorite_player-more-data-listing.handlebars')
+const showUpdateMyFavoritePlayerTemplate = require('../templates/favorite_player-update-listing.handlebars')
 
 // *** COMMENTED OUT *** const gameLogic = require('./gameLogic')
 
@@ -106,24 +107,57 @@ const indexPlayerFailure = (error) => {
 
 const showMorePlayerSuccess = (ajaxResponse) => {
   console.log('player/ui.js (showMorePlayerSuccess) ran!  Response is :', ajaxResponse)
-  console.log('player/ui.js (showMorePlayerSuccess) ran!  Favorite Player is :', ajaxResponse.favorite_player)
-  console.log('player/ui.js (showMorePlayerSuccess) ran!  Player Name is :', ajaxResponse.favorite_player.player_name)
-  console.log('player/ui.js (showMorePlayerSuccess) ran!  Team Name is :', ajaxResponse.favorite_player.team_name)
-  console.log('player/ui.js (showMorePlayerSuccess) ran!  Sport is :', ajaxResponse.favorite_player.sport)
-  console.log('player/ui.js (showMorePlayerSuccess) ran!  Position is :', ajaxResponse.favorite_player.position)
-  console.log('player/ui.js (showMorePlayerSuccess) ran!  Player Number is :', ajaxResponse.favorite_player.player_number)
+  // console.log('player/ui.js (showMorePlayerSuccess) ran!  Favorite Player is :', ajaxResponse.favorite_player)
+  // console.log('player/ui.js (showMorePlayerSuccess) ran!  Player Name is :', ajaxResponse.favorite_player.player_name)
+  // console.log('player/ui.js (showMorePlayerSuccess) ran!  Team Name is :', ajaxResponse.favorite_player.team_name)
+  // console.log('player/ui.js (showMorePlayerSuccess) ran!  Sport is :', ajaxResponse.favorite_player.sport)
+  // console.log('player/ui.js (showMorePlayerSuccess) ran!  Position is :', ajaxResponse.favorite_player.position)
+  // console.log('player/ui.js (showMorePlayerSuccess) ran!  Player Number is :', ajaxResponse.favorite_player.player_number)
+
+  // Store favorite_player object
+  store.favorite_player = ajaxResponse.favorite_player
 
   // Clear favorite players content
   $('.content').empty()
 
   // Build handlebars HTML showing more data about selected favorite player
   //  for current user
-  const showMoreMyFavoritePlayerHtml = showMoreFavoritePlayerTemplate({ favorite_player: ajaxResponse.favorite_player })
+  const showMoreMyFavoritePlayerHtml = showMoreMyFavoritePlayerTemplate({ favorite_player: ajaxResponse.favorite_player })
   $('.content').append(showMoreMyFavoritePlayerHtml)
 }
 
 const showMorePlayerFailure = (error) => {
   // console.log('player/ui.js (showMorePlayerFailure) - Error is :', error)
+  console.error(error)
+}
+
+const updatePlayerSuccess = (ajaxResponse) => {
+  console.log('player/ui.js (updatePlayerSuccess) ran!  Response is :', ajaxResponse)
+  // console.log('player/ui.js (updatePlayerSuccess) ran!  Favorite Player is :', ajaxResponse.favorite_player)
+  // console.log('player/ui.js (updatePlayerSuccess) ran!  Player Name is :', ajaxResponse.favorite_player.player_name)
+  // console.log('player/ui.js (updatePlayerSuccess) ran!  Team Name is :', ajaxResponse.favorite_player.team_name)
+  // console.log('player/ui.js (updatePlayerSuccess) ran!  Sport is :', ajaxResponse.favorite_player.sport)
+  // console.log('player/ui.js (updatePlayerSuccess) ran!  Position is :', ajaxResponse.favorite_player.position)
+  // console.log('player/ui.js (updatePlayerSuccess) ran!  Player Number is :', ajaxResponse.favorite_player.player_number)
+
+  // Do not clear favorite players content
+
+  // *** START HERE! *** Build handlebars HTML showing UPDATE FORM about selected favorite player
+  //  for current user to update as needed
+  const showUpdateMyFavoritePlayerHtml = showUpdateMyFavoritePlayerTemplate({ favorite_player: ajaxResponse.favorite_player })
+  $('.content').append(showUpdateMyFavoritePlayerHtml)
+}
+
+// const updateWorkoutsSuccess = (data) => {
+//   console.log('updating single workout success', data)
+//   const updateWorkoutsHtml = updateWorkoutsTemplate({
+//     workout: data.workout
+//   })
+//   $('.workoutStats[data-id=' + data.workout.id + ']').html(updateWorkoutsHtml)
+// }
+
+const updatePlayerFailure = (error) => {
+  // console.log('player/ui.js (updatePlayerFailure) - Error is :', error)
   console.error(error)
 }
 
@@ -187,6 +221,8 @@ module.exports = {
   indexPlayerFailure,
   showMorePlayerSuccess,
   showMorePlayerFailure,
+  updatePlayerSuccess,
+  updatePlayerFailure,
   removePlayerSuccess,
   removePlayerFailure,
   showGameSuccess,

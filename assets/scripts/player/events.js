@@ -4,6 +4,9 @@ const getFormFields = require(`../../../lib/get-form-fields`)
 
 const api = require('./api')
 const ui = require('./ui')
+const store = require('../store')
+
+const showUpdateMyFavoritePlayerTemplate = require('../templates/favorite_player-update-listing.handlebars')
 
 // *** COMMENTED OUT *** const gameLogic = require('./gameLogic')
 
@@ -14,6 +17,8 @@ const onCreatePlayer = function (event) {
 
   // New game so clear out all cells on game board
   // *** COMMENTED OUT *** gameLogic.clearGameBoard()
+
+  console.log('THIS: ', this)
 
   const data = getFormFields(this)
   api.createPlayer(data)
@@ -38,6 +43,43 @@ const onShowMorePlayer = function (data) {
   api.showMorePlayer(data)
     .then(ui.showMorePlayerSuccess)
     .catch(ui.showMorePlayerFailure)
+}
+
+const onSaveUpdatedPlayer = function (id, event) {
+  event.preventDefault()
+  console.log('player/events.js (onSaveUpdatedPlayer) - ID: ', id)
+
+  console.log('THIS: ', this)
+
+  const data = getFormFields(this)
+  console.log('player/events.js (onSaveUpdatedPlayer) - Data is: ', data)
+
+  api.updatePlayer(id, data)
+    .then(ui.updatePlayerSuccess)
+    .catch(ui.updatePlayerFailure)
+}
+
+const onUpdatePlayer = function (id) {
+  event.preventDefault()
+  console.log('player/events.js (onUpdatePlayer)')
+
+  console.log('player/events.js (onUpdatePlayer) - Favorite Player is: ', store.favorite_player)
+  console.log('player/events.js (onUpdatePlayer) - ID is: ', id)
+
+  // Clear favorite players content
+  $('.content').empty()
+
+  // Build handlebars HTML showing UPDATE FORM to have current user update data
+  //  about selected favorite player
+
+  const showUpdateMyFavoritePlayerHtml = showUpdateMyFavoritePlayerTemplate({ favorite_player: store.favorite_player })
+  $('.content').html(showUpdateMyFavoritePlayerHtml)
+
+  $(document).on('submit', '#save-id', function (event) {
+    event.preventDefault()
+    console.log('scripts/index.js (ODR - save-update-button) ran!  ID is :', this.id)
+    onSaveUpdatedPlayer(this.id, event)
+  })
 }
 
 const onRemovePlayer = function (data) {
@@ -98,6 +140,10 @@ const addHandlers = () => {
 
   $('.content').on('click', '.jetertest', onShowMorePlayer)
 
+  // Set up event handlers to SHOW UPDATE PLAYER FORM
+  // $('.content').on('click', '.updateButton', onToggleUpdate)
+  // $('.content').on('submit', '.updateForm', onUpdatePlayer)
+
   // Set up event handlers for temporary simulation modals to test GAME API
   //  AJAX calls
   $('#show-game').on('submit', onShowGame)
@@ -112,6 +158,8 @@ const addHandlers = () => {
 
 module.exports = {
   addHandlers,
-  onRemovePlayer,
-  onShowMorePlayer
+  onShowMorePlayer,
+  onUpdatePlayer,
+  onSaveUpdatedPlayer,
+  onRemovePlayer
 }

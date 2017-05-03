@@ -47,6 +47,16 @@ $(() => {
     playerEvents.onShowMorePlayer(this.id)
   })
 
+  $(document).on('click', '.update-button', function () {
+    console.log('scripts/index.js (ODR - update-button) ran!  ID is :', this.id)
+    playerEvents.onUpdatePlayer(this.id)
+  })
+
+  // $(document).on('submit', '.save-update-button', function () {
+  //   console.log('scripts/index.js (ODR - save-update-button) ran!  ID is :', this.id)
+  //   playerEvents.onSaveUpdatedPlayer(this.id, event)
+  // })
+
   $(document).on('click', '.remove-button', function () {
     console.log('scripts/index.js (ODR - remove-button) ran!  ID is :', this.id)
     playerEvents.onRemovePlayer(this.id)
