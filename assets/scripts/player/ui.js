@@ -131,30 +131,18 @@ const showMorePlayerFailure = (error) => {
   console.error(error)
 }
 
-const updatePlayerSuccess = (ajaxResponse) => {
-  console.log('player/ui.js (updatePlayerSuccess) ran!  Response is :', ajaxResponse)
-  // console.log('player/ui.js (updatePlayerSuccess) ran!  Favorite Player is :', ajaxResponse.favorite_player)
-  // console.log('player/ui.js (updatePlayerSuccess) ran!  Player Name is :', ajaxResponse.favorite_player.player_name)
-  // console.log('player/ui.js (updatePlayerSuccess) ran!  Team Name is :', ajaxResponse.favorite_player.team_name)
-  // console.log('player/ui.js (updatePlayerSuccess) ran!  Sport is :', ajaxResponse.favorite_player.sport)
-  // console.log('player/ui.js (updatePlayerSuccess) ran!  Position is :', ajaxResponse.favorite_player.position)
-  // console.log('player/ui.js (updatePlayerSuccess) ran!  Player Number is :', ajaxResponse.favorite_player.player_number)
+const updatePlayerSuccess = () => {
+  console.log('player/ui.js (updatePlayerSuccess) ran!')
 
-  // Do not clear favorite players content
+  // Do a GET INDEX (call to api.indexPlayer method for current list of
+  //  favorite_players object (after recent create player) and build handlebars
+  //  HTML showing my favorite players for current user.
 
-  // *** START HERE! *** Build handlebars HTML showing UPDATE FORM about selected favorite player
-  //  for current user to update as needed
-  const showUpdateMyFavoritePlayerHtml = showUpdateMyFavoritePlayerTemplate({ favorite_player: ajaxResponse.favorite_player })
-  $('.content').append(showUpdateMyFavoritePlayerHtml)
+  // Don't need to use data object here!
+  api.indexPlayer()
+    .then(indexPlayerSuccess)
+    .catch(indexPlayerFailure)
 }
-
-// const updateWorkoutsSuccess = (data) => {
-//   console.log('updating single workout success', data)
-//   const updateWorkoutsHtml = updateWorkoutsTemplate({
-//     workout: data.workout
-//   })
-//   $('.workoutStats[data-id=' + data.workout.id + ']').html(updateWorkoutsHtml)
-// }
 
 const updatePlayerFailure = (error) => {
   // console.log('player/ui.js (updatePlayerFailure) - Error is :', error)

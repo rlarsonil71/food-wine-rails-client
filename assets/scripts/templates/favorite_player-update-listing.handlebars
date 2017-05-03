@@ -2,12 +2,12 @@
 <h2><small>Player: {{favorite_player.player_name}}</small></h2>
 <div data-id="{{favorite_player.id}}" id="updateForm{{favorite_player.id}}" class='form-group updateDiv text-left'>
   <form data-id="{{favorite_player.id}}" id="updatePlayerForm" class='text-left form-group updateForm'>
-    <input type="text" name="player_info[team_name]" id='update-player-team-name' value="{{favorite_player.team_name}}" placeholder="Team Name"><br>
-    <input type="text" name="player_info[sport]" id='update-player-sport' value="{{favorite_player.sport}}" placeholder="Sport"><br>
-    <input type="text" name="player_info[position]" id='update-player-position' value="{{favorite_player.position}}" placeholder="Position"><br>
-    <input type="text" name="player_info[player_number]" id='update-player-player-number' value="{{favorite_player.player_number}}" placeholder="Player Number"><br>
+    <input type="text" name="player_info[team_name]" id='update-player-team-name' value="{{favorite_player.team_name}}" placeholder="Team Name"> Team Name<br>
+    <input type="text" name="player_info[sport]" id='update-player-sport' value="{{favorite_player.sport}}" placeholder="Sport"> Sport<br>
+    <input type="text" name="player_info[position]" id='update-player-position' value="{{favorite_player.position}}" placeholder="Position"> Position<br>
+    <input type="text" name="player_info[player_number]" id='update-player-player-number' value="{{favorite_player.player_number}}" placeholder="Player Number"> Player Number<br>
     <br>
-    <input type="submit" name="submit" id="save-id" data-id="{{favorite_player.id}}" class="save-update-button" value='Update Player'>
+    <input type="submit" id='save-id' data-id="{{favorite_player.id}}" class="btn btn-success save-update-button" value='Update Player'>
   </form>
   <br>
 </div>

@@ -15,9 +15,6 @@ const onCreatePlayer = function (event) {
   event.preventDefault()
   console.log('player/events.js (onCreatePlayer) ran!')
 
-  // New game so clear out all cells on game board
-  // *** COMMENTED OUT *** gameLogic.clearGameBoard()
-
   console.log('THIS: ', this)
 
   const data = getFormFields(this)
@@ -45,16 +42,16 @@ const onShowMorePlayer = function (data) {
     .catch(ui.showMorePlayerFailure)
 }
 
-const onSaveUpdatedPlayer = function (id, event) {
+const onSaveUpdatedPlayer = function (event) {
   event.preventDefault()
-  console.log('player/events.js (onSaveUpdatedPlayer) - ID: ', id)
+  console.log('player/events.js (onSaveUpdatedPlayer) - ID: ', store.favorite_player.id)
 
   console.log('THIS: ', this)
 
   const data = getFormFields(this)
   console.log('player/events.js (onSaveUpdatedPlayer) - Data is: ', data)
 
-  api.updatePlayer(id, data)
+  api.updatePlayer(store.favorite_player.id, data)
     .then(ui.updatePlayerSuccess)
     .catch(ui.updatePlayerFailure)
 }
@@ -75,11 +72,12 @@ const onUpdatePlayer = function (id) {
   const showUpdateMyFavoritePlayerHtml = showUpdateMyFavoritePlayerTemplate({ favorite_player: store.favorite_player })
   $('.content').html(showUpdateMyFavoritePlayerHtml)
 
-  $(document).on('submit', '#save-id', function (event) {
-    event.preventDefault()
-    console.log('scripts/index.js (ODR - save-update-button) ran!  ID is :', this.id)
-    onSaveUpdatedPlayer(this.id, event)
-  })
+  // $('.content').on('submit', '#updatePlayerForm', function (event) {
+  //   event.preventDefault()
+  //   console.log('player/events.js (onUpdatePlayer) ran!  ID is :', id)
+  //   onSaveUpdatedPlayer(event, id)
+  // })
+  $('.content').on('submit', '#updatePlayerForm', onSaveUpdatedPlayer)
 }
 
 const onRemovePlayer = function (data) {
