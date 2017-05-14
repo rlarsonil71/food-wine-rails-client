@@ -1,13 +1,15 @@
 'use strict'
 
 const store = require('../store')
+const playerApi = require('../player/api')
+const playerUi = require('../player/ui')
 
 const errorTextUponSignUpFailure = 'User has already signed up.  Please sign in.'
 const errorTextUponIncorrectPasswordFailure = 'Password is incorrect.  Please type in correct password.'
 
 const welcomeText = 'Welcome!!!'
 const signUpOrSignInText = 'Please SIGN UP or SIGN IN!'
-const createNewPlayerText = 'Please Create a New Favorite Sports Player or Show All Your Favorite Players!'
+const createNewPlayerOrShowAllPlayersText = 'Please Create a New Favorite Sports Player or Show All Your Favorite Players!'
 const thankYouTextUponSignOutSuccess = 'Thank you for playing!!!'
 
 const signUpSuccess = (ajaxResponse) => {
@@ -92,13 +94,21 @@ const signInSuccess = (ajaxResponse) => {
   // Upon successful user sign in, show CREATE NEW PLAYER modal button
   $('#select-create-player').show()
 
-  // Upon successful user sign in, show SHOW FAVORITE PLAYERS modal button
-  $('#select-index-player').show()
+  // Upon successful user sign in, show SHOW FAVORITE PLAYERS modal button ONLY
+  //  if favorite players EXIST for current user
+
+  // Do a GET INDEX (call to playerApi.checkForAnyindexPlayer method to find
+  //  out if current user has any stored favorite players
+
+  // Don't need to use data object here!
+  playerApi.indexPlayer()
+    .then(playerUi.checkForAnyPlayerSuccess)
+    .catch(playerUi.checkForAnyPlayerFailure)
 
   // Set GUI status bar after user signs in
   const userString = 'Welcome ' + store.user.email + '!!!'
   document.getElementById('status-bar-1').innerHTML = userString
-  document.getElementById('status-bar-2').innerHTML = createNewPlayerText
+  document.getElementById('status-bar-2').innerHTML = createNewPlayerOrShowAllPlayersText
 }
 
 const signInFailure = (error) => {

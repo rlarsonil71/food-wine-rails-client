@@ -4,6 +4,7 @@ const store = require('../store')
 const api = require('./api')
 const showMyFavoritePlayersTemplate = require('../templates/favorite_player-listing.handlebars')
 const showMoreMyFavoritePlayerTemplate = require('../templates/favorite_player-more-data-listing.handlebars')
+const createNewPlayerText = 'Please Create a New Favorite Sports Player!'
 
 const createPlayerSuccess = (ajaxResponse) => {
   // console.log('player/ui.js (createPlayerSuccess) ran!  Response is :', ajaxResponse)
@@ -38,6 +39,9 @@ const createPlayerFailure = (error) => {
 const indexPlayerSuccess = (ajaxResponse) => {
   // console.log('player/ui.js (indexPlayerSuccess) ran!  Response is :', ajaxResponse)
 
+  // Show the SHOW FAVORITE PLAYERS modal button to the user
+  $('#select-index-player').show()
+
   // Hide the SHOW FAVORITE PLAYERS modal from displaying to the user
   $('#myIndexPlayerModal').modal('hide')
 
@@ -55,6 +59,52 @@ const indexPlayerSuccess = (ajaxResponse) => {
 const indexPlayerFailure = (error) => {
   // console.log('player/ui.js (indexPlayerFailure) - Error is :', error)
   console.error(error)
+
+  // Hide the SHOW FAVORITE PLAYERS modal button from displaying to the user
+  $('#select-index-player').hide()
+
+  // Hide the SHOW FAVORITE PLAYERS modal from displaying to the user
+  $('#myIndexPlayerModal').modal('hide')
+
+  // Clear modal body text in SHOW FAVORITE PLAYERS modal
+  $('#index-player').trigger('reset')
+}
+
+const checkForAnyPlayerSuccess = (ajaxResponse) => {
+  // console.log('player/ui.js (checkForAnyPlayerSuccess) ran!  Response is :', ajaxResponse)
+  // console.log('player/ui.js (checkForAnyPlayerSuccess) Number of Favorite Players: ',
+  //             ajaxResponse.favorite_players.length)
+
+  // Upon successful user sign in, show SHOW FAVORITE PLAYERS modal button ONLY
+  //  if favorite players EXIST for current user
+  if (ajaxResponse.favorite_players.length === 0) {
+    // Current user has NO favorite players so hide the SHOW FAVORITE PLAYERS
+    //  modal button from displaying to the user
+    $('#select-index-player').hide()
+
+    // Set GUI status bar directing current user to only create a new player
+    document.getElementById('status-bar-2').innerHTML = createNewPlayerText
+  } else {
+    // Show the SHOW FAVORITE PLAYERS modal button to the user
+    $('#select-index-player').show()
+  }
+
+  // Hide the SHOW FAVORITE PLAYERS modal from displaying to the user
+  $('#myIndexPlayerModal').modal('hide')
+
+  // Clear modal body text in SHOW FAVORITE PLAYERS modal
+  $('#index-player').trigger('reset')
+
+  // Clear favorite players content
+  $('.content').empty()
+}
+
+const checkForAnyPlayerFailure = (error) => {
+  // console.log('player/ui.js (indexPlayerFailure) - Error is :', error)
+  console.error(error)
+
+  // Hide the SHOW FAVORITE PLAYERS modal button from displaying to the user
+  $('#select-index-player').hide()
 
   // Hide the SHOW FAVORITE PLAYERS modal from displaying to the user
   $('#myIndexPlayerModal').modal('hide')
@@ -133,6 +183,8 @@ module.exports = {
   createPlayerFailure,
   indexPlayerSuccess,
   indexPlayerFailure,
+  checkForAnyPlayerSuccess,
+  checkForAnyPlayerFailure,
   showMorePlayerSuccess,
   showMorePlayerFailure,
   updatePlayerSuccess,
