@@ -4,6 +4,7 @@ const store = require('../store')
 const api = require('./api')
 const showMyFavoritePlayersTemplate = require('../templates/favorite_player-listing.handlebars')
 const showMoreMyFavoritePlayerTemplate = require('../templates/favorite_player-more-data-listing.handlebars')
+const createNewPlayerOrShowAllPlayersText = 'Please Create a New Favorite Sports Player or Show All Your Favorite Players!'
 const createNewPlayerText = 'Please Create a New Favorite Sports Player!'
 
 const createPlayerSuccess = (ajaxResponse) => {
@@ -14,6 +15,9 @@ const createPlayerSuccess = (ajaxResponse) => {
 
   // Clear modal body text in CREATE NEW PLAYER modal
   $('#create-player').trigger('reset')
+
+  // Set GUI status bar after user creates a player
+  document.getElementById('status-bar-2').innerHTML = createNewPlayerOrShowAllPlayersText
 
   // Do a GET INDEX (call to api.indexPlayer method for current list of
   //  favorite_players object (after recent create player) and build handlebars
@@ -169,8 +173,8 @@ const removePlayerSuccess = () => {
 
   // Don't need to use data object here!
   api.indexPlayer()
-    .then(indexPlayerSuccess)
-    .catch(indexPlayerFailure)
+    .then(checkForAnyPlayerSuccess)
+    .catch(checkForAnyPlayerFailure)
 }
 
 const removePlayerFailure = (error) => {
