@@ -84,9 +84,16 @@ const onSaveUpdatedPlayer = function (event) {
   const data = getFormFields(event.target)
   // console.log('player/events.js (onSaveUpdatedPlayer) - Data is: ', data)
 
-  api.updatePlayer(store.favorite_player.id, data)
-    .then(ui.updatePlayerSuccess)
-    .catch(ui.updatePlayerFailure)
+  // If the first character of ALL `player_info` UPDATE fields have data,
+  //  update player
+  if ((data.player_info.team_name[0]) &&
+    (data.player_info.sport[0]) &&
+    (data.player_info.position[0]) &&
+    (data.player_info.player_number[0])) {
+    api.updatePlayer(store.favorite_player.id, data)
+      .then(ui.updatePlayerSuccess)
+      .catch(ui.updatePlayerFailure)
+  }
 }
 
 const onUpdatePlayer = function (id) {
