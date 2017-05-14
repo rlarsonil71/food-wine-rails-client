@@ -14,16 +14,56 @@ const onCreatePlayer = function (event) {
   // console.log('player/events.js (onCreatePlayer) ran!')
 
   // console.log('THIS: ', this)
-
+  // THIS = event.target
   const data = getFormFields(this)
-  api.createPlayer(data)
-    .then(ui.createPlayerSuccess)
-    .catch(ui.createPlayerFailure)
+  // console.log('player/event.js (onCreatePlayer) Data: ', data)
+
+  // console.log('player/event.js (onCreatePlayer) player_name[0]: ', data.player_info.player_name[0])
+  // console.log('player/event.js (onCreatePlayer) team_name[0]: ', data.player_info.team_name[0])
+  // console.log('player/event.js (onCreatePlayer) sport[0]: ', data.player_info.sport[0])
+  // console.log('player/event.js (onCreatePlayer) position[0]: ', data.player_info.position[0])
+  // console.log('player/event.js (onCreatePlayer) player_number[0]: ', data.player_info.player_number[0])
+
+  // CHECK FOR VALID USER ENTERED `player_info` DATA in CREATE-PLAYER modal
+  // All 5 fields are required in the back end API so make sure each user
+  // entered field (player_name, team_name, sport, position. and player_number
+  // have data (i.e. first position of string has data).
+
+  // If the first character of ALL `player_info` fields have data, create player
+  if ((data.player_info.player_name[0]) &&
+    (data.player_info.team_name[0]) &&
+    (data.player_info.sport[0]) &&
+    (data.player_info.position[0]) &&
+    (data.player_info.player_number[0])) {
+    api.createPlayer(data)
+      .then(ui.createPlayerSuccess)
+      .catch(ui.createPlayerFailure)
+  } else {
+    // User did not enter all required create player `player_info` fields.
+    // Ask user to re-enter all required fields.
+    const errorTextUponIncompletePlayerInfoFailure = 'All fields are required.  Please verify all player info fields are filled in.'
+
+    // Display error text in CREATE PLAYER modal footer back to user to fill in
+    //  all player info fields.
+    $('#create-player-footer').html(errorTextUponIncompletePlayerInfoFailure)
+
+    // If user closes out of CREATE PLAYER modal, clear error text message in
+    //  CREATE PLAYER modal and reset modal body text.
+    const statusTextWhenCreateNewPlayer = 'All player info fields are required.  Please fill in all player info fields.'
+
+    $('#close-create-player-modal').on('click', function () {
+      // Refresh create player user text
+      $('#create-player-footer').html(statusTextWhenCreateNewPlayer)
+      $('#create-player').trigger('reset')
+    })
+  }
 }
 
 const onIndexPlayer = function (event) {
   event.preventDefault()
   // console.log('player/events.js (onIndexPlayer) ran!')
+
+  // console.log('THIS: ', this)
 
   // Don't need to use data object here!
   api.indexPlayer()
@@ -43,8 +83,6 @@ const onShowMorePlayer = function (data) {
 const onSaveUpdatedPlayer = function (event) {
   event.preventDefault()
   // console.log('player/events.js (onSaveUpdatedPlayer) - ID: ', store.favorite_player.id)
-
-  // console.log('THIS: ', this)
 
   const data = getFormFields(this)
   // console.log('player/events.js (onSaveUpdatedPlayer) - Data is: ', data)
