@@ -13,9 +13,8 @@ const onCreatePlayer = function (event) {
   event.preventDefault()
   // console.log('player/events.js (onCreatePlayer) ran!')
 
-  // console.log('THIS: ', this)
   // THIS = event.target
-  const data = getFormFields(this)
+  const data = getFormFields(event.target)
   // console.log('player/event.js (onCreatePlayer) Data: ', data)
 
   // console.log('player/event.js (onCreatePlayer) player_name[0]: ', data.player_info.player_name[0])
@@ -63,8 +62,6 @@ const onIndexPlayer = function (event) {
   event.preventDefault()
   // console.log('player/events.js (onIndexPlayer) ran!')
 
-  // console.log('THIS: ', this)
-
   // Don't need to use data object here!
   api.indexPlayer()
     .then(ui.indexPlayerSuccess)
@@ -84,7 +81,7 @@ const onSaveUpdatedPlayer = function (event) {
   event.preventDefault()
   // console.log('player/events.js (onSaveUpdatedPlayer) - ID: ', store.favorite_player.id)
 
-  const data = getFormFields(this)
+  const data = getFormFields(event.target)
   // console.log('player/events.js (onSaveUpdatedPlayer) - Data is: ', data)
 
   api.updatePlayer(store.favorite_player.id, data)

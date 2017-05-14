@@ -9,7 +9,7 @@ const onSignUp = function (event) {
   event.preventDefault()
   // console.log('(auth/events.js) Sign-up ran!')
 
-  const data = getFormFields(this)
+  const data = getFormFields(event.target)
   // console.log('auth/event.js (onSignUp) Data: ', data)
 
   // CHECK FOR USER ENTERED PASSWORD MISMATCH in SIGN-UP modal
@@ -39,7 +39,7 @@ const onSignIn = function (event) {
   event.preventDefault()
   // console.log('(auth/events.js) Sign-in ran!')
 
-  const data = getFormFields(this)
+  const data = getFormFields(event.target)
   api.signIn(data)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
@@ -49,7 +49,7 @@ const onChangePassword = function (event) {
   event.preventDefault()
   // console.log('(auth/events.js) Change Password ran!')
 
-  const data = getFormFields(this)
+  const data = getFormFields(event.target)
   api.changePassword(data)
      .then(ui.changePasswordSuccess)
      .catch(ui.changePasswordFailure)
