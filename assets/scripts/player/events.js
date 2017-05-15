@@ -13,6 +13,18 @@ const onCreatePlayer = function (event) {
   event.preventDefault()
   // console.log('player/events.js (onCreatePlayer) ran!')
 
+  // If user closes out of CREATE PLAYER modal, clear error text message in
+  //  CREATE PLAYER modal and reset modal body text.
+  const statusTextWhenCreateNewPlayer = 'All player info fields are required.  Please fill in all player info fields.'
+
+  $('#close-create-player-modal').on('click', function () {
+    // Refresh create player user text
+    // console.log('player/event.js (onCreatePlayer) Closing Create Player Modal - Clearing modal text')
+
+    $('#create-player-footer').html(statusTextWhenCreateNewPlayer)
+    $('#create-player').trigger('reset')
+  })
+
   // THIS = event.target
   const data = getFormFields(event.target)
   // console.log('player/event.js (onCreatePlayer) Data: ', data)
@@ -46,18 +58,6 @@ const onCreatePlayer = function (event) {
     //  all player info fields.
     $('#create-player-footer').html(errorTextUponIncompletePlayerInfoFailure)
   }
-
-  // If user closes out of CREATE PLAYER modal, clear error text message in
-  //  CREATE PLAYER modal and reset modal body text.
-  const statusTextWhenCreateNewPlayer = 'All player info fields are required.  Please fill in all player info fields.'
-
-  $('#close-create-player-modal').on('click', function () {
-    // Refresh create player user text
-    // console.log('player/event.js (onCreatePlayer) Closing Create Player Modal - Clearing modal text')
-
-    $('#create-player-footer').html(statusTextWhenCreateNewPlayer)
-    $('#create-player').trigger('reset')
-  })
 }
 
 const onIndexPlayer = function (event) {
