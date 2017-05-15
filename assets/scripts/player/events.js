@@ -45,17 +45,19 @@ const onCreatePlayer = function (event) {
     // Display error text in CREATE PLAYER modal footer back to user to fill in
     //  all player info fields.
     $('#create-player-footer').html(errorTextUponIncompletePlayerInfoFailure)
-
-    // If user closes out of CREATE PLAYER modal, clear error text message in
-    //  CREATE PLAYER modal and reset modal body text.
-    const statusTextWhenCreateNewPlayer = 'All player info fields are required.  Please fill in all player info fields.'
-
-    $('#close-create-player-modal').on('click', function () {
-      // Refresh create player user text
-      $('#create-player-footer').html(statusTextWhenCreateNewPlayer)
-      $('#create-player').trigger('reset')
-    })
   }
+
+  // If user closes out of CREATE PLAYER modal, clear error text message in
+  //  CREATE PLAYER modal and reset modal body text.
+  const statusTextWhenCreateNewPlayer = 'All player info fields are required.  Please fill in all player info fields.'
+
+  $('#close-create-player-modal').on('click', function () {
+    // Refresh create player user text
+    // console.log('player/event.js (onCreatePlayer) Closing Create Player Modal - Clearing modal text')
+
+    $('#create-player-footer').html(statusTextWhenCreateNewPlayer)
+    $('#create-player').trigger('reset')
+  })
 }
 
 const onIndexPlayer = function (event) {
