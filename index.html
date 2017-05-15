@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Favorite Player App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Do not add `link` tags unless you know what you are doing -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Do not add `script` tags unless you know what you are doing -->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<body class="container-fluid">
+  <h1>Who's Your Favorite Sports Player?</h1>
+
+  <!-- NAV BAR -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <form class="navbar-form navbar-left">
+
+          <div class="row">
+            <div class="col-xs-12">
+              <!-- Button trigger sign-up modal -->
+              <button type="button" id="select-sign-up" class="btn btn-primary btn-md" data-target="#mySignUpModal">
+                    Sign Up
+              </button>
+              <!-- Button trigger select-sign-in modal -->
+              <button type="button" id="select-sign-in" class="btn btn-primary btn-md" data-target="#mySignInModal">
+                    Sign In
+              </button>
+              <!-- Button trigger select-change-password modal -->
+              <button type="button" id="select-change-password" class="btn btn-primary btn-md" data-target="#myChangePasswordModal">
+                    Change Password
+              </button>
+              <!-- Button trigger select-sign-out modal -->
+              <button type="button" id="select-sign-out" class="btn btn-primary btn-md" data-target="#mySignOutModal">
+                    Sign Out
+              </button>
+
+              <!-- Button trigger select-create-player modal -->
+              <button type="button" id="select-create-player" class="btn btn-success btn-md" data-target="#myCreatePlayerModal">
+                    Create New Player
+              </button>
+              <!-- Button trigger select-index-player modal -->
+              <button type="button" id="select-index-player" class="btn btn-success btn-md" data-target="#myIndexPlayerModal">
+                    Show All My Favorite Players
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MODAL - SIGN-UP -->
+  <div class="modal fade" id="mySignUpModal" tabindex="-1" role="dialog" aria-labelledby="mySignUpModalLabel">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" id="close-sign-up-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="mySignUpModalLabel">Sign Up</h4>
+        </div>
+
+        <!-- MODAL BODY -->
+        <div class="modal-body">
+          <form id="sign-up">
+            <input type="text" name="credentials[email]" id="sign-up-email" placeholder="Email">  Email<br>
+            <input type="password" name="credentials[password]" id="sign-up-password" placeholder="Password">  Password<br>
+            <input type="password" name="credentials[password_confirmation]" id="sign-up-password-confirmation" placeholder="Confirm Password">  Confirm Password<br><br>
+            <input type="submit" name="submit" value="Sign Up">
+          </form>
+        </div>
+        <!-- MODAL BODY -->
+
+        <div class="modal-footer" id="sign-up-footer">
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL - SIGN-IN -->
+  <div class="modal fade" id="mySignInModal" tabindex="-1" role="dialog" aria-labelledby="mySignInModalLabel">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" id="close-sign-in-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="mySignInModalLabel">Sign In</h4>
+        </div>
+
+        <!-- MODAL BODY -->
+        <div class="modal-body">
+          <form id="sign-in">
+              <input type="text" name="credentials[email]" id="sign-in-email" placeholder="Email">  Email<br>
+              <input type="password" name="credentials[password]" id="sign-in-password" placeholder="Password">  Password<br><br>
+              <input type="submit" name="submit" value="Sign In">
+          </form>
+        </div>
+        <!-- MODAL BODY -->
+
+        <div class="modal-footer" id="sign-in-footer">
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL - CHANGE-PASSWORD -->
+  <div class="modal fade" id="myChangePasswordModal" tabindex="-1" role="dialog" aria-labelledby="myChangePasswordModalLabel">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" id="close-change-password-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myChangePasswordModalLabel">Change Password</h4>
+        </div>
+
+        <!-- MODAL BODY -->
+        <div class="modal-body">
+          <form id="change-password">
+              <input type="password" name="passwords[old]" id="change-password-old" placeholder="Old Password">  Old Password<br>
+              <input type="password" name="passwords[new]" id="change-password-new" placeholder="New Password">  New Password<br><br>
+              <input type="submit" name="submit" value="Change Password">
+          </form>
+        </div>
+        <!-- MODAL BODY -->
+
+        <div class="modal-footer" id="change-password-footer">
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL - SIGN-OUT -->
+  <div class="modal fade" id="mySignOutModal" tabindex="-1" role="dialog" aria-labelledby="mySignOutModalLabel">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="mySignOutModalLabel">Please Confirm Sign Out</h4>
+        </div>
+
+        <!-- MODAL BODY -->
+        <div class="modal-body">
+          <form id="sign-out">
+              <input type="submit" name="submit" value="Sign Out">
+          </form>
+        </div>
+        <!-- MODAL BODY -->
+
+        <div class="modal-footer" id="sign-out-footer">
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL - CREATE-PLAYER -->
+  <div class="modal fade" id="myCreatePlayerModal" tabindex="-1" role="dialog" aria-labelledby="myCreatePlayerModalLabel">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" id="close-create-player-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myCreatePlayerModalLabel">Create New Favorite Player</h4>
+        </div>
+
+        <!-- MODAL BODY -->
+        <div class="modal-body">
+          <form id="create-player">
+              <input type="text" name="player_info[player_name]" id="create-player-player-name" placeholder="Player Name">  Player Name<br>
+              <input type="text" name="player_info[team_name]" id="create-player-team-name" placeholder="Team Name">  Team Name<br>
+              <input type="text" name="player_info[sport]" id="create-player-sport" placeholder="Sport">  Sport<br>
+              <input type="text" name="player_info[position]" id="create-player-position" placeholder="Position">  Position<br>
+              <input type="text" name="player_info[player_number]" id="create-player-player-number" placeholder="Player Number">  Player Number<br><br>
+              <input type="submit" name="submit" value="Create New Player">
+          </form>
+        </div>
+        <!-- MODAL BODY -->
+
+        <div class="modal-footer" id="create-player-footer">All player info fields are required.  Please fill in all player info fields.
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL - INDEX-PLAYER -->
+  <div class="modal fade" id="myIndexPlayerModal" tabindex="-1" role="dialog" aria-labelledby="myIndexPlayerModalLabel">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myIndexPlayerModalLabel">Show All My Favorite Players</h4>
+        </div>
+
+        <!-- MODAL BODY -->
+        <div class="modal-body">
+          <form id="index-player">
+              <input type="submit" name="submit" value="Show All My Favorite Players">
+          </form>
+        </div>
+        <!-- MODAL BODY -->
+
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="status-bar-1">
+  </div>
+
+  <div id="status-bar-2">
+  </div>
+
+  <!-- FAVORITE PLAYERS Content -->
+  <div id="content" class="content">
+  </div>
+
+  <footer class="container-fluid text-center">
+    <p>Created by Ron Larson</p>
+  </footer>
+
+</body>
+
+</html>
